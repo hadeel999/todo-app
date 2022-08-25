@@ -10,6 +10,13 @@ export default function Form(props){
         setting.setDisplaySettings(!setting.displaySettings);
         console.log(setting.displaySettings);
     }
+    const handleNChange = (e) => {
+      setting.setNumberItems(parseInt(e.target.value));
+    }
+    const storageHandler = (e) => {
+      localStorage.setItem('settings', JSON.stringify(setting));
+    }
+
     return(
         <div>
         <form onSubmit={handleSubmit}>
@@ -44,7 +51,9 @@ export default function Form(props){
       <br></br>
 
         <Switch checked={setting.displaySettings} onClick={handleClick}>Display completed Items</Switch>
-        <button onClick={props.handleSort} className='sortB'>Sort by Difficulty</button>
+        <button onClick={props.handleSort} className='sortB'>Sort by Difficulty</button><br></br><br></br>
+        <input onChange={handleNChange} placeholder={`Tasks/Page ${setting.numberItems}`} type="number" min={1}/><br></br><br></br>
+        <button onClick={storageHandler} className='sortB'>Save Settings</button>
         </div>
     )
 }
