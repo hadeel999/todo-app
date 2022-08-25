@@ -31,7 +31,6 @@ const ToDo = () => {
   }
 
   function toggleComplete(id) {
-
     const items = list.map( item => {
       if ( item.id === id ) {
         item.complete = ! item.complete;
@@ -40,19 +39,19 @@ const ToDo = () => {
     });
     setList(items);
   }
-  const handleSort = () => {
-    let items;
-    if(settings.sortBy === 'difficulty'){
-      items=  currentItems.sort((a,b)=>{
-        if(a.difficulty > b.difficulty){
-          return 1;
-        }else if(a.difficulty < b.difficulty){
-          return -1;
-        }
-        return 0;
-      })
+
+  const handleSort = (e) => {
+    let items=[];
+    console.log(e);
+    items=  currentItems.sort((a,b)=>{
+    if(a.difficulty > b.difficulty){
+      return 1;
+    }else if(a.difficulty < b.difficulty){
+      return -1;
     }
- 
+    return 0;
+  })
+      settings.setSortBy("difficulty");     
     console.log(items);
     setSort(!sort);
     setList(items);
