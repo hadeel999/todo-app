@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { SettingsContext } from "../../context/settings";
 import { Button, Card, Elevation } from "@blueprintjs/core";
+import { When } from "react-if";
+import { AuthContext } from '../../context/Auth.js';
 
 export default function List(props){
     const settings = useContext(SettingsContext);
+    const auth = useContext(AuthContext);
   if(settings.displaySettings){
     return(
         <Card elevation={Elevation.TWO} key={props.item.id} className='list-card'>
@@ -12,7 +15,9 @@ export default function List(props){
         <p><small>Difficulty: {props.item.difficulty}</small></p>
         <div onClick={() => props.toggleComplete(props.item.id)}>Complete: {props.item.complete.toString()}</div>
         <br></br>
+        <When condition={auth.authurized('delete')}>
         <Button onClick={() => props.deleteItem(props.item.id)}>Delete Item</Button>
+        </When>
         {/* <hr /> */}
       </Card>
     )
@@ -25,7 +30,9 @@ export default function List(props){
                 <p><small>Difficulty: {props.item.difficulty}</small></p>
                 <div onClick={() => props.toggleComplete(props.item.id)}>Complete: {props.item.complete.toString()}</div>
                 <br></br>
+                <When condition={auth.authurized('delete')}>
                 <Button onClick={() => props.deleteItem(props.item.id)}>Delete Item</Button>
+                </When>
                 {/* <hr /> */}
               </Card>
             )
