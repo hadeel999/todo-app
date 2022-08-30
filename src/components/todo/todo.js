@@ -105,7 +105,7 @@ const ToDo = () => {
       <When condition={auth.isLoggedIn}>
          <button onClick={e => {
         auth.signOut();
-      }} className="signOut">sign Out</button>
+      }} className="signOut">Sign out</button>
       </When>     
     </header>
 

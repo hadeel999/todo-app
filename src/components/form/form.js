@@ -92,7 +92,7 @@ export default function Form(props){
             setPassword(e.target.value);
           }} name="password" type="password" placeholder="Password" />
           <br></br><br></br>
-          <button type="submit">Login</button>
+          <button type="submit">Sign in</button>
         </form>
       </When>
     </div>
